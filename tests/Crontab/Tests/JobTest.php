@@ -20,6 +20,8 @@ class JobTest extends \PHPUnit_Framework_TestCase
     public function testSetterGetter()
     {
         $this->assertEquals('0', $this->job->getMinute());
+        $this->assertEquals('0', $this->job->setMinute(0)->getMinute());
+        $this->assertEquals('0', $this->job->setMinute(0.0)->getMinute());
         $this->assertEquals('*', $this->job->setMinute('*')->getMinute());
         $this->assertEquals('*/2', $this->job->setMinute('*/2')->getMinute());
         $this->assertEquals('0-59', $this->job->setMinute('0-59')->getMinute());

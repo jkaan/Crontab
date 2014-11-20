@@ -93,8 +93,9 @@ class CrontabFileHandler
         });
 
         foreach ($lines as $line) {
+            $trimmed = trim($line);
             // if line is not a comment, convert it to a cron
-            if (0 !== \strpos($line, '#')) {
+            if (0 !== \strpos($trimmed, '#')) {
                 $jobs[] = Job::parse($line);
             }
         }

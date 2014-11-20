@@ -36,7 +36,7 @@ class Job extends BaseJob
     static function parse($jobLine)
     {
         // split the line
-        $parts = explode(' ', $jobLine);
+        $parts = preg_split('@ @', $jobLine, NULL, PREG_SPLIT_NO_EMPTY);
 
         // check the number of part
         if (count($parts) < 5) {
@@ -116,13 +116,12 @@ class Job extends BaseJob
     private function generateHash()
     {
         $this->hash = hash('md5', serialize(array(
-            $this->getMinute(),
-            $this->getHour(),
-            $this->getDayOfMonth(),
-            $this->getMonth(),
-            $this->getDayOfWeek(),
-            $this->getCommand(),
-
+            strval($this->getMinute()),
+            strval($this->getHour()),
+            strval($this->getDayOfMonth()),
+            strval($this->getMonth()),
+            strval($this->getDayOfWeek()),
+            strval($this->getCommand()),
         )));
 
         return $this;
