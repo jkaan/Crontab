@@ -67,132 +67,132 @@ class Crontab
      *
      * @deprecated Please use {@see CrontabFileHandler::write()}
      */
-    public function write()
-    {
-        $this->getCrontabFileHandler()->write($this);
+	    public function write()
+	    {
+		$this->getCrontabFileHandler()->write($this);
 
-        return $this;
-    }
+		return $this;
+	    }
 
-    /**
-     * Remove all crontab content
-     *
-     * @return Crontab
-     */
-    public function flush()
-    {
-        $this->removeAllJobs();
-        $this->getCrontabFileHandler()->write($this);
-    }
+	    /**
+	     * Remove all crontab content
+	     *
+	     * @return Crontab
+	     */
+	    public function flush()
+	    {
+		$this->removeAllJobs();
+		$this->getCrontabFileHandler()->write($this);
+	    }
 
-    /**
-     * Get unix user to add crontab
-     *
-     * @return string
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
+	    /**
+	     * Get unix user to add crontab
+	     *
+	     * @return string
+	     */
+	    public function getUser()
+	    {
+		return $this->user;
+	    }
 
-    /**
-     * Set unix user to add crontab
-     *
-     * @param string $user
-     *
-     * @return Crontab
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
+	    /**
+	     * Set unix user to add crontab
+	     *
+	     * @param string $user
+	     *
+	     * @return Crontab
+	     */
+	    public function setUser($user)
+	    {
+		$this->user = $user;
 
-        return $this;
-    }
+		return $this;
+	    }
 
-    /**
-     * Get crontab executable location
-     *
-     * @return string
-     *
-     * @deprecated Please use {@see CrontabFileHandler::getCrontabExecutable()}
-     */
-    public function getCrontabExecutable()
-    {
-        return $this->getCrontabFileHandler()->getCrontabExecutable();
-    }
+	    /**
+	     * Get crontab executable location
+	     *
+	     * @return string
+	     *
+	     * @deprecated Please use {@see CrontabFileHandler::getCrontabExecutable()}
+	     */
+	    public function getCrontabExecutable()
+	    {
+		return $this->getCrontabFileHandler()->getCrontabExecutable();
+	    }
 
-    /**
-     * Set unix user to add crontab
-     *
-     * @param string $crontabExecutable
-     *
-     * @return Crontab
-     *
-     * @deprecated Please use {@see CrontabFileHandler::setCrontabExecutable()}
-     */
-    public function setCrontabExecutable($crontabExecutable)
-    {
-        $this->getCrontabFileHandler()->setCrontabExecutable($crontabExecutable);
+	    /**
+	     * Set unix user to add crontab
+	     *
+	     * @param string $crontabExecutable
+	     *
+	     * @return Crontab
+	     *
+	     * @deprecated Please use {@see CrontabFileHandler::setCrontabExecutable()}
+	     */
+	    public function setCrontabExecutable($crontabExecutable)
+	    {
+		$this->getCrontabFileHandler()->setCrontabExecutable($crontabExecutable);
 
-        return $this;
-    }
+		return $this;
+	    }
 
-    /**
-     * Get all crontab jobs
-     *
-     * @return Job[] An array of Job
-     */
-    public function getJobs()
-    {
-        return $this->jobs;
-    }
+	    /**
+	     * Get all crontab jobs
+	     *
+	     * @return Job[] An array of Job
+	     */
+	    public function getJobs()
+	    {
+		return $this->jobs;
+	    }
 
-    /**
-     * Get crontab error
-     *
-     * @return string
-     *
-     * @deprecated Please use {@see CrontabFileHandler::getError()}
-     */
-    public function getError()
-    {
-        return $this->getCrontabFileHandler()->getError();
-    }
+	    /**
+	     * Get crontab error
+	     *
+	     * @return string
+	     *
+	     * @deprecated Please use {@see CrontabFileHandler::getError()}
+	     */
+	    public function getError()
+	    {
+		return $this->getCrontabFileHandler()->getError();
+	    }
 
-    /**
-     * Get crontab output
-     *
-     * @return string
-     *
-     * @deprecated Please use {@see CrontabFileHandler::getOutput()}
-     */
-    public function getOutput()
-    {
-        return $this->getCrontabFileHandler()->getOutput();
-    }
+	    /**
+	     * Get crontab output
+	     *
+	     * @return string
+	     *
+	     * @deprecated Please use {@see CrontabFileHandler::getOutput()}
+	     */
+	    public function getOutput()
+	    {
+		return $this->getCrontabFileHandler()->getOutput();
+	    }
 
-    /**
-     * Add a new job to the crontab
-     *
-     * @param Job $job
-     *
-     * @return Crontab
-     */
-    public function addJob(Job $job)
-    {
-        $this->jobs[$job->getHash()] = $job;
+	    /**
+	     * Add a new job to the crontab
+	     *
+	     * @param Job $job
+	     *
+	     * @return Crontab
+	     */
+	    public function addJob(Job $job)
+	    {
+		$this->jobs[$job->getHash()] = $job->serialize();
 
-        return $this;
-    }
+		return $this;
+	    }
 
-    /**
-     * Adda new job to the crontab
-     *
-     * @param array $jobs
-     *
-     * @return Crontab
-     */
-    public function setJobs(array $jobs)
+	    /**
+	     * Adda new job to the crontab
+	     *
+	     * @param array $jobs
+	     *
+	     * @return Crontab
+	     */
+	    public function setJobs(array $jobs)
     {
         foreach ($jobs as $job) {
             $this->addJob($job);

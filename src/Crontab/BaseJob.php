@@ -250,4 +250,20 @@ class BaseJob
 
         return $this;
     }
+
+    public function serialize() {
+        return array(
+            'minute' => $this->getMinute(),
+            'hour' => $this->getHour(),
+            'dayOfMonth' => $this->getDayOfMonth(),
+            'dayOfWeek' => $this->getDayOfWeek(),
+            'month' => $this->getMonth(),
+            'command' => $this->getCommand(),
+            'comments' => $this->getComments(),
+            'errorFile' => $this->getErrorFile(),
+            'errorSize' => $this->getErrorSize(),
+            'logFile' => $this->getLogFile(),
+            'logSize' => $this->getLogSize()
+        );
+    }
 }
