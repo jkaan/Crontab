@@ -147,6 +147,14 @@ class Crontab
 		return $this->jobs;
 	    }
 
+	    public function getSerializedJobs()
+            {
+		$serializedJobs = [];
+
+		foreach ($this->jobs as $job) {
+			$serializedJobs[] = $job->serialize();			
+		}
+	    }
 	    /**
 	     * Get crontab error
 	     *
@@ -180,7 +188,7 @@ class Crontab
 	     */
 	    public function addJob(Job $job)
 	    {
-		$this->jobs[$job->getHash()] = $job->serialize();
+		$this->jobs[$job->getHash()] = $job;
 
 		return $this;
 	    }
