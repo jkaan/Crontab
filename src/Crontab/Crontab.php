@@ -154,6 +154,8 @@ class Crontab
 		foreach ($this->jobs as $job) {
 			$serializedJobs[] = $job->serialize();			
 		}
+
+		return $serializedJobs;
 	    }
 	    /**
 	     * Get crontab error
