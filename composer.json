@@ -1,5 +1,5 @@
 {
-    "name": "yzalis/crontab",
+    "name": "jkaan/crontab",
     "type": "library",
     "description": "Create, manage or delete crontab and jobs with php.",
     "keywords": ["crontab", "cron", "cron job"],
