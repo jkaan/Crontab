@@ -251,15 +251,20 @@ class BaseJob
         return $this;
     }
 
-    public function serialize() {
+    public function serialize()
+    {
+        // The first part if the number of the cronjob, then comes the name of the clue separated by a dollar sign
+        list($cronjobId, $clueName) = explode('$', $this->getComments());
+
         return array(
+            'clueName' => $clueName,
             'minute' => $this->getMinute(),
             'hour' => $this->getHour(),
             'dayOfMonth' => $this->getDayOfMonth(),
             'dayOfWeek' => $this->getDayOfWeek(),
             'month' => $this->getMonth(),
             'command' => $this->getCommand(),
-            'comments' => $this->getComments(),
+            'comments' => $cronjobId,
             'errorFile' => $this->getErrorFile(),
             'errorSize' => $this->getErrorSize(),
             'logFile' => $this->getLogFile(),
